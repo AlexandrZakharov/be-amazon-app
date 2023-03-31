@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { PrismaService } from "../prisma.service";
 import { returnUserObject } from "./return-user.object";
 import { Prisma } from "@prisma/client";
@@ -27,7 +27,7 @@ export class UserService {
       },
     });
 
-    if (!user) throw new Error("User not found");
+    if (!user) throw new NotFoundException("User not found");
 
     return user;
   }
@@ -59,7 +59,7 @@ export class UserService {
   async toggleFavorite(userId: number, productId: number) {
     const user = await this.byId(userId);
 
-    if (!user) throw new Error("User not found");
+    if (!user) throw new NotFoundException("User not found");
 
     const isProductExists = user.favorites.some(
       (product) => product.id === productId
