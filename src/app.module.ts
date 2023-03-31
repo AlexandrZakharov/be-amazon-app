@@ -1,18 +1,29 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { AuthModule } from './auth/auth.module';
-import { PrismaService } from './prisma.service';
-import { UserModule } from './user/user.module';
-import { ProductModule } from './product/product.module';
-import { ReviewModule } from './review/review.module';
-import { CategoryModule } from './category/category.module';
-import { OrderModule } from './order/order.module';
-import { PaginationModule } from './pagination/pagination.module';
+import { Module } from "@nestjs/common";
+import { ConfigModule } from "@nestjs/config";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+import { AuthModule } from "./auth/auth.module";
+import { PrismaService } from "./prisma.service";
+import { UserModule } from "./user/user.module";
+import { ProductModule } from "./product/product.module";
+import { ReviewModule } from "./review/review.module";
+import { CategoryModule } from "./category/category.module";
+import { OrderModule } from "./order/order.module";
+import { PaginationModule } from "./pagination/pagination.module";
+import { StatisticsModule } from "./statistics/statistics.module";
 
 @Module({
-  imports: [AuthModule, ConfigModule.forRoot(), UserModule, ProductModule, ReviewModule, CategoryModule, OrderModule, PaginationModule],
+  imports: [
+    AuthModule,
+    ConfigModule.forRoot(),
+    UserModule,
+    ProductModule,
+    ReviewModule,
+    CategoryModule,
+    OrderModule,
+    PaginationModule,
+    StatisticsModule,
+  ],
   controllers: [AppController],
   providers: [AppService, PrismaService],
 })
